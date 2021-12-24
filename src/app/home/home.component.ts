@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DataServiceService } from '../data-service.service';
 import { GlobalDataSummary } from '../global-data';
 
@@ -15,8 +16,10 @@ export class HomeComponent implements OnInit {
   totalRecovered = 0;
   globalData : GlobalDataSummary[];
 
+
   constructor(private dataService: DataServiceService) { }
 
+  
   ngOnInit() {
     this.dataService.getGlobalData().subscribe({
       next: (result) =>{
