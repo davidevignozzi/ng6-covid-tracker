@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataServiceService } from '../data-service.service';
+import { GlobalDataSummary } from '../global-data';
 
 @Component({
   selector: 'app-countries',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CountriesComponent implements OnInit {
 
-  constructor() { }
+  data: GlobalDataSummary[];
+  countries: string[] = [];
+  constructor(private service: DataServiceService) { }
 
   ngOnInit() {
+
+    this.service.getGlobalData().subscribe(result => {
+      this.data = result;
+      this.data.forEach(cs => {
+        this.countries.push(cs.country)
+      });
+    })
   }
 
 }
